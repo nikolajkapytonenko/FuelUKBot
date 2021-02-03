@@ -249,7 +249,7 @@ class FuelUser:
 
 
 Users = dict()
-bot = telebot.TeleBot("914190330:AAFOnsItvftbwY2kyTiKPEA8D_ueGHvjNuE")
+bot = telebot.TeleBot("fffffffffffffffffffffffffffffffffffffffffff")
 log = Logging()
 
 
