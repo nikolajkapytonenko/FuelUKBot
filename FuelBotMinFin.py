@@ -258,12 +258,10 @@ def send_start(message):
 	if message.from_user.id in Users:
 		Users[message.from_user.id].show_cites()
 		log.update_user(Users[message.from_user.id])
-		print(f"Старый пользователь {Users[message.from_user.id].firstName} (start) !")
 	else:
 		Users[message.from_user.id] = FuelUser(bot, message)
 		Users[message.from_user.id].show_cites()
 		log.write_user(Users[message.from_user.id])
-		print(f"ДОБАВЛЕН НОВЫЙ ПОЛЬЗОВАТЕЛЬ {Users[message.from_user.id].firstName} (start)")
 
 
 @bot.message_handler(commands=['help'])
@@ -271,12 +269,10 @@ def send_start(message):
 	if message.from_user.id in Users:
 		Users[message.from_user.id].help_handler()
 		log.update_user(Users[message.from_user.id])
-		print(f"Старый пользователь {Users[message.from_user.id].firstName} (start) !")
 	else:
 		Users[message.from_user.id] = FuelUser(bot, message)
 		Users[message.from_user.id].help_handler()
 		log.write_user(Users[message.from_user.id])
-		print(f"ДОБАВЛЕН НОВЫЙ ПОЛЬЗОВАТЕЛЬ {Users[message.from_user.id].firstName} (start)")
 
 
 @bot.message_handler(commands=['city'])
@@ -284,12 +280,10 @@ def send_city(message):
 	if message.from_user.id in Users:
 		Users[message.from_user.id].show_cites()
 		log.update_user(Users[message.from_user.id])
-		print(f"Старый пользователь {Users[message.from_user.id].firstName} (city) !")
 	else:
 		Users[message.from_user.id] = FuelUser(bot, message)
 		Users[message.from_user.id].show_cites()
 		log.write_user(Users[message.from_user.id])
-		print(f"ДОБАВЛЕН НОВЫЙ ПОЛЬЗОВАТЕЛЬ {Users[message.from_user.id].firstName} (city)")
 
 
 @bot.message_handler(commands=['drop'])
@@ -297,12 +291,10 @@ def send_drop(message):
 	if message.from_user.id in Users:
 		Users[message.from_user.id].drop_stations()
 		log.update_user(Users[message.from_user.id])
-		print(f"Старый пользователь {Users[message.from_user.id].firstName} (city) !")
 	else:
 		Users[message.from_user.id] = FuelUser(bot, message)
 		Users[message.from_user.id].drop_stations()
 		log.write_user(Users[message.from_user.id])
-		print(f"ДОБАВЛЕН НОВЫЙ ПОЛЬЗОВАТЕЛЬ {Users[message.from_user.id].firstName} (city)")
 
 
 @bot.message_handler(content_types=['text'])
@@ -310,21 +302,17 @@ def text_handler(message):
 	if message.from_user.id in Users:
 		Users[message.from_user.id].text_handler(message)
 		log.update_user(Users[message.from_user.id])
-		print(f"Старый пользователь {Users[message.from_user.id].firstName} (text) !")
 	else:
 		Users[message.from_user.id] = FuelUser(bot, message)
 		Users[message.from_user.id].text_handler(message)
 		log.write_user(Users[message.from_user.id])
-		print(f"ДОБАВЛЕН НОВЫЙ ПОЛЬЗОВАТЕЛЬ {Users[message.from_user.id].firstName} (text)")
 
 
 @bot.callback_query_handler(func=lambda call: True)
 def call_handler(call):
 	if call.from_user.id in Users:
-		print("!!!! - ", call.from_user.id)
 		Users[call.from_user.id].call_handler(call)
 		log.update_user(Users[call.from_user.id])
-		print(f"Старый пользователь {Users[call.from_user.id].firstName} (call) !")
 	else:
 		bot.send_message(call.from_user.id, "Пожалуйста, выберите город.", timeout=15)
 
